@@ -1,0 +1,18 @@
+﻿<Project Sdk="Ignitron.Mod.Sdk/0.8.2.1-local.1">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <AssemblyName>long_jump_mod</AssemblyName>
+        <RootNamespace>LongJumpMod</RootNamespace>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- Keep template resources flat, then place them under the mod ID at build output. -->
+        <Content Include="Content\**\*.*"
+             CopyToOutputDirectory="PreserveNewest"
+             Link="ignitron\long_jump_mod\%(RecursiveDir)%(Filename)%(Extension)"/>
+    </ItemGroup>
+</Project>

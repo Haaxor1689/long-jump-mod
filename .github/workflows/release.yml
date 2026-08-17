@@ -1,0 +1,69 @@
+name: Release mod
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - Metadata.json
+      - long-jump-mod.csproj
+      - Content/**
+      - Effects/**
+      - Items/**
+      - Patches/**
+      - LongJumpMod.cs
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Read version and detect version change
+        id: metadata
+        shell: bash
+        run: |
+          version=$(jq -r '.version' Metadata.json)
+          if [[ -z "$version" || "$version" == "null" ]]; then
+            echo "Metadata.json does not contain a version" >&2
+            exit 1
+          fi
+
+          previous_version=""
+          if [[ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]]; then
+            previous_version=$(git show "${{ github.event.before }}:Metadata.json" 2>/dev/null | jq -r '.version // empty' || true)
+          fi
+
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          if [[ "$version" != "$previous_version" ]]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set up .NET
+        if: steps.metadata.outputs.changed == 'true'
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.x
+
+      - name: Restore dependencies
+        if: steps.metadata.outputs.changed == 'true'
+        run: dotnet restore . --source https://api.nuget.org/v3/index.json --source https://codeberg.org/api/packages/ignitron/nuget/index.json
+
+      - name: Build release bundle
+        if: steps.metadata.outputs.changed == 'true'
+        run: dotnet publish . -c ReleasePack --no-restore -v:minimal -tl:off
+
+      - name: Publish GitHub release
+        if: steps.metadata.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.metadata.outputs.version }}
+        run: gh release create "v$VERSION" "bin/ReleasePack/net10.0/long-jump-mod.zip" --title "Long Jump Module $VERSION" --generate-notes
