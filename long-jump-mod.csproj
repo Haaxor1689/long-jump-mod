@@ -1,4 +1,4 @@
-﻿<Project Sdk="Ignitron.Mod.Sdk/0.8.2.1-local.1">
+﻿<Project Sdk="Ignitron.Mod.Sdk/0.8.2.1">
 
     <PropertyGroup>
         <TargetFramework>net10.0</TargetFramework>
