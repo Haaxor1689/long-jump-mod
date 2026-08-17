@@ -35,6 +35,12 @@ if ([string]::IsNullOrWhiteSpace($version)) {
 $tag = "v$version"
 $archive = Join-Path $projectRoot 'bin\ReleasePack\net10.0\long-jump-mod.zip'
 
+foreach ($artifactDir in @((Join-Path $projectRoot 'bin'), (Join-Path $projectRoot 'obj'))) {
+    if (Test-Path -LiteralPath $artifactDir) {
+        Remove-Item -LiteralPath $artifactDir -Recurse -Force
+    }
+}
+
 Push-Location $projectRoot
 try {
     dotnet restore . --configfile NuGet.config
