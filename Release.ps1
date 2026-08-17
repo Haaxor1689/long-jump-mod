@@ -57,7 +57,15 @@ try {
         throw "Release archive was not created: $archive"
     }
 
-    gh release view $tag 2>$null
+    # gh writes to stderr when the release is missing; keep that from becoming a terminating error.
+    $previousErrorAction = $ErrorActionPreference
+    $ErrorActionPreference = 'Continue'
+    try {
+        gh release view $tag 2>&1 | Out-Null
+    }
+    finally {
+        $ErrorActionPreference = $previousErrorAction
+    }
     if ($LASTEXITCODE -eq 0) {
         throw "GitHub release $tag already exists. Increase the version in Metadata.json before publishing."
     }
