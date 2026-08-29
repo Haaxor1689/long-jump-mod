@@ -1,17 +1,17 @@
 using Allumeria.EntitySystem.Effects;
 
-namespace LongJumpMod.Effects;
+namespace LongJumpModule.Effects;
 
 public static class EffectRegistry
 {
     public static Effect long_jump = null!;
 
-    internal static void Initialize(string modId)
+    internal static void Initialize()
     {
         var highestId = Effect.effectsByString.Values.OrderBy(v => v.intID).First().intID;
         long_jump = new EffectLongJump(
             ++highestId,
-            $"{modId}.long_jump",
+            $"{Mod.ModId}.long_jump",
             192,
             368,
             Effect.EffectType.Hidden

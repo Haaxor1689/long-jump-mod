@@ -1,7 +1,7 @@
 using Allumeria.EntitySystem;
 using Allumeria.EntitySystem.Effects;
 
-namespace LongJumpMod.Effects;
+namespace LongJumpModule.Effects;
 
 public class EffectLongJump(
     int intID,

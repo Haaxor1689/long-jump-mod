@@ -10,7 +10,7 @@
       "role": "author"
     }
   ],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "dependencies": [
     {
       "id": "allumeria",
@@ -30,5 +30,5 @@
     }
   ],
   "environment": "client_server",
-  "entrypoints": ["LongJumpMod.LongJumpMod"]
+  "entrypoints": ["LongJumpModule.Mod"]
 }

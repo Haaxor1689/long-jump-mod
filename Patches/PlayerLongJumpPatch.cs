@@ -5,10 +5,10 @@ using Allumeria.EntitySystem;
 using Allumeria.EntitySystem.Components;
 using Allumeria.EntitySystem.Entities;
 using HarmonyLib;
-using LongJumpMod.Effects;
+using LongJumpModule.Effects;
 using OpenTK.Mathematics;
 
-namespace LongJumpMod.Patches;
+namespace LongJumpModule.Patches;
 
 [HarmonyPatch(typeof(PlayerEntity), nameof(PlayerEntity.Movement))]
 internal static class PlayerLongJumpMovementPatch

@@ -1,9 +1,9 @@
-﻿<Project Sdk="Ignitron.Mod.Sdk/0.8.2.1">
+<Project Sdk="Ignitron.Mod.Sdk/0.8.5">
 
     <PropertyGroup>
         <TargetFramework>net10.0</TargetFramework>
         <AssemblyName>long_jump_mod</AssemblyName>
-        <RootNamespace>LongJumpMod</RootNamespace>
+        <RootNamespace>LongJumpModule</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
