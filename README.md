@@ -1,8 +1,12 @@
-# ![Long Jump Module](/Content/textures/atlas/items/long_jump.png) Long Jump Module
+# Long Jump Module
+
+![Item tooltil](/assets/tooltip.png)
 
 A gameplay mod for Allumeria that adds a Half-Life style long jump ability.
 
 When the player equips the **Long Jump Module** trinket, they can perform a forward launch by crouching and jumping while moving. Using this ability costs 120 stamina.
+
+![Longjump](/assets/longjump.gif)
 
 ## Acquisition
 
@@ -23,6 +27,6 @@ The Long Jump Module can be obtained in followin ways:
 
 ## Changelog
 
-## 1.0.1
+### 1.0.1
 
 - Updated for **Allumeria 0.15** early access release
