@@ -1,4 +1,3 @@
-using Allumeria.DataManagement.Permissions;
 using Allumeria.Items.LootTables;
 using HarmonyLib;
 using HarmonyLib.Tools;
