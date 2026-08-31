@@ -1,4 +1,4 @@
-> DEPRECATED! Migrated to https://codeberg.org/Haaxor1689/cinematic-camera-mod
+> DEPRECATED! Migrated to https://codeberg.org/Haaxor1689/long-jump-mod
 
 # Long Jump Module
 
